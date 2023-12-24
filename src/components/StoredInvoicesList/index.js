@@ -1,4 +1,4 @@
-import React, {PureComponent, Fragment} from 'react'
+import React, { PureComponent, Fragment } from 'react'
 
 import PropTypes from 'prop-types'
 import {
@@ -18,7 +18,7 @@ import ReceiptIcon from '@mui/icons-material/Receipt'
 
 import connectWithRedux from '../../decorators/connectWithRedux'
 import invoiceActions from '../../redux/invoice/actions'
-import {selectors as invoiceSelector} from '../../redux/invoice/reducer'
+import { selectors as invoiceSelector } from '../../redux/invoice/reducer'
 import labels from '../../translations'
 
 const StyledList = styled(List)({
@@ -71,7 +71,7 @@ class StoredInvoicesList extends PureComponent {
   }
 
   render = () => {
-    const {invoices, invoiceMeta, isLoading, uuid} = this.props
+    const { invoices, invoiceMeta, isLoading, uuid } = this.props
 
     return (
       <Fragment>
@@ -88,17 +88,17 @@ class StoredInvoicesList extends PureComponent {
           </ListItem>
           <Divider />
           {invoices?.map((invoice, index) => (
-            <ListItem  component="div" disablePadding key={`invoice_${invoice.uuid}_${index}`}>
-              <ListItemButton disabled={isLoading} sx={{ height: 56 }} onClick={this.handleInvoicePick(invoice.uuid)} style={invoice.uuid === uuid ? {backgroundColor: 'rgba(0,0,0,0.1)'}:{}}>
+            <ListItem component="div" disablePadding key={`invoice_${invoice.uuid}_${index}`}>
+              <ListItemButton disabled={isLoading} sx={{ height: 56 }} onClick={this.handleInvoicePick(invoice.uuid)} style={invoice.uuid === uuid ? { backgroundColor: 'rgba(0,0,0,0.1)' } : {}}>
                 <ListItemIcon>
                   <ReceiptIcon />
                 </ListItemIcon>
                 <ListItemText>
-                  <Typography variant="body2" component="div" sx={{position: 'relative'}}>
+                  <Typography variant="body2" component="div" sx={{ position: 'relative' }}>
                     {invoice.invoiceMeta.invoiceSeries}{invoice.invoiceMeta.invoiceNo}
-                    {invoice.invoiceMeta.locked && <LockIcon sx={{position: 'absolute', color: '#666', transform: 'scale(0.75)'}} />}
+                    {invoice.invoiceMeta.locked && <LockIcon sx={{ position: 'absolute', color: '#666', transform: 'scale(0.75)' }} />}
                   </Typography>
-                  <Typography variant="body2" component="div" style={{fontSize: '11px'}}>{invoice.invoiceMeta.invoiceDate} - {invoice.customer.companyName}</Typography>
+                  <Typography variant="body2" component="div" style={{ fontSize: '11px' }}>{invoice.invoiceMeta.invoiceDate} - {invoice.customer.companyName}</Typography>
                 </ListItemText>
               </ListItemButton>
             </ListItem>
